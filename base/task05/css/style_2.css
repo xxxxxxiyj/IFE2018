@@ -1,0 +1,63 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+li {
+	list-style: none;
+}
+header {
+	float: left;
+	width: 15%;
+	height: 980px;
+	color: #fff;
+	background-color: #65a5fa;
+
+}
+h1 {
+	width: 100px;
+	font-size: 38px;
+
+	margin : 80px auto;
+}
+main {
+	float: left;
+	padding-left: 35px;
+}
+h3 {
+	font-size: 26px;
+}
+.basic-info,
+.contact-info {
+	overflow:hidden;
+}
+.basic-info li,
+.contact-info li {
+	float: left;
+	margin-right: 30px;
+}
+li span {
+	font-weight: bold;
+	margin-right: 10px;
+}
+li > p {
+	margin-top: 5px;
+}
+aside {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+}
+button {
+	width: 80px;
+	height: 35px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	background-color: #d6d6d6;
+	cursor: pointer;
+}
+button:hover {
+	background-color: #b9b5b5;
+}
