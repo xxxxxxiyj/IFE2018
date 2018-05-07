@@ -14,19 +14,27 @@
 		.text {
 			font-size: 34px;
 			margin-bottom: 50px;
-			-webkit-transition: all .3s ease-out;
-			   -moz-transition: all .3s ease-out;
-			     -o-transition: all .3s ease-out;
+			-webkit-transition: all .3s ease-in-out;
+			   -moz-transition: all .3s ease-in-out;
+			     -o-transition: all .3s ease-in-out;
+			        transition: all .3s ease-in-out;
+		}
+		.blue{
+			color: #00f;
 		}
 		.line {
 			display: block;
-			width: 2px;
-			height: 5px;
+			width: 0px;
+			height: 3px;
 			margin: 8px auto;
-			border-top:2px solid transparent;
-			-webkit-transition: all .3s ease-out;
-			   -moz-transition: all .3s ease-out;
-			     -o-transition: all .3s ease-out;
+			background-color: #00f;
+			-webkit-transition: all .3s ease-in-out;
+			   -moz-transition: all .3s ease-in-out;
+			     -o-transition: all .3s ease-in-out;
+			        transition: all .3s ease-in-out;
+		}
+		.change{
+			width: 130px;
 		}
 		.toggle-btn {
 			width: 150px;
@@ -55,27 +63,29 @@
 		var line = document.querySelector(".line");
 
 		btn.addEventListener("click", function(){
-			txt.setAttribute('style','color:blue;');
-			line.setAttribute('style',
-				'width:130px;' + 'border-top:2px solid blue;'
-				);
-			setTimeout(function(){
-				txt.setAttribute('style', 'color:#000;');
-				line.setAttribute('style',
-					'width:2px;' + 'border-top:2px solid transparent;'
-					);
-			},1000);
-		},false);
-
-		txt.addEventListener("transitionend", function(){
-			// setTimeout(function(){
-			// 	txt.setAttribute('style', 'color:#000;');
+			if(txt.classList.contains('blue') && line.classList.contains('change')){
+				txt.classList.remove('blue');
+				line.classList.remove('change');
+			}else{
+				txt.classList.add('blue');
+				line.classList.add('change');
+			}
+			// if(toggle === "false"){
+			// 	btn.setAttribute("data-checked", "true");
+			// 	txt.setAttribute('style','color:blue;');
 			// 	line.setAttribute('style',
-			// 		'width:2px;' + 'border-top:2px solid transparent;'
+			// 		'width:130px;' + 'border-top:2px solid blue;'
+			// 		);	
+			// }else{
+			// 	txt.setAttribute('style','color:#000;');
+			// 	line.setAttribute('style',
+			// 		'width:5px;' + 'border-top:2px solid transparent;'
 			// 		);
-			// },900);
+			// 	btn.setAttribute("data-checked", "false");
+			// }
 			
-		},false);	
+		},true);
+
 	</script>
 </body>
 </html>
