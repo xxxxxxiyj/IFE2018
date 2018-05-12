@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D空间的卡片翻转动效</title>
+	<style>
+		.container {
+			width: 100%;
+			margin: 50px auto;
+			position: relative;
+		}
+		.card-wrap {
+			position: absolute;
+		    left: 50%;
+		    transform: translateX(-50%);
+			width: 250px;
+			height: 350px;
+			perspective: 800px; /* 定义3D元素距视图的距离，其子元素会攻得透视效果，而不是元素本身 */
+		}
+		.forward,
+		.back {
+			position: absolute;
+			left: 0;
+			transition: transform .8s ease-in-out;
+		}
+		.forward {
+			backface-visibility: hidden;  /* 隐藏翻转过去的内容，保证只能看到一个面的内容 */
+			z-index: 2;
+		}
+		.back {
+			backface-visibility: hidden;
+			transform: rotateY(-180deg);
+			z-index: 1;
+		}
+		.card-wrap:hover .forward {
+			transform: rotateY(180deg);
+		}
+		.card-wrap:hover .back {
+			transform: rotateY(0deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 翻转容器 -->
+		<div class="card-wrap">
+			<img class="forward" src="images/正面.jpg">
+			<img class="back" src="images/反面.jpg">
+		</div>		
+	</div>
+</body>
+</html>
