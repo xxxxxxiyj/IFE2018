@@ -6,7 +6,7 @@ body {
 	padding: 0;
 	width: 1600px;
 	margin: 0 auto;
-	font-family: "Helvetica", Geneva, sans-serif;
+	font-family: Montserrat;
 	font-size: 14px;
 }
 /* header 开始 */
@@ -93,7 +93,7 @@ header {
 }
 .web-intro-title {
 	margin-bottom: 85px;
-	padding: 0 170px;
+	padding: 0 130px;
 	font-size: 42px;
 }
 .web-info-item {
@@ -372,7 +372,7 @@ form > input {
 form > textarea {
 	height: 145px;
 	padding: 20px;
-	font-family: "Helvetica", Geneva, sans-serif;
+	font-family: Montserrat;
 	resize: none;
 }
 form > input[type="submit"] {
@@ -442,6 +442,6 @@ footer .create {
 	line-height: 1.8em;
 }
 .icon-group a {
-	margin-right: 25px;
+	margin-right: 24px;
 }
 /* footer结束 */
