@@ -31,6 +31,7 @@ header {
 .header-main-content {
 	width: 100%;
 	padding: 87px 104px 106px;
+	font-size: 16px;
 	line-height: 2em;
 	letter-spacing: .1em;
 	text-align: center;
@@ -63,8 +64,12 @@ header {
 	margin-right: 30px;
 	padding-left: 20px;
 	font-size: 14px;
+	outline: none;
 	background: none;
 	color: #fff;
+}
+.signup input[type="text"]:focus {
+	border: 1px solid #fff;
 }
 .signup input[type="button"] {
 	width: 125px;
@@ -73,6 +78,10 @@ header {
 	border: none;
 	border-radius: 3px;
 	background-color: #fff;
+}
+.signup input[type="button"]:hover {
+	opacity: .75;
+	cursor: pointer;
 }
 /* header 结束 */
 
@@ -160,6 +169,12 @@ header {
 	padding: 0;
 	outline: none;
 	border: 0;
+}
+.features:hover {
+	opacity: .75;
+}
+.policies-button-group .free:hover {
+	background: rgba(255, 255, 255, .3);
 }
 .policies-button-group .free {
 	margin-left: 30px;
@@ -365,7 +380,11 @@ form > *{
 	margin-bottom: 30px;
 	padding-left: 20px;
 	border: 1px solid #d3d3d3;
+	outline: none;
 	border-radius: 3px;
+}
+form > *:focus {
+	border: 1px solid #000;
 }
 form > input {
 	height: 49px;
