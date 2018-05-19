@@ -304,16 +304,17 @@ header {
 	position: relative;
 }
 .unique-person-item:hover .unique-person-contact-wrap{
-	display: block;
+	opacity: 1;
 }
 .unique-person-contact-wrap {
 	position: absolute;
 	top: 0;
 	left: 0;
-	display: none;
 	width: 470px;
 	height: 340px;
 	background: rgba(0, 0, 0, .65);
+	opacity: 0;
+	transition: all .8s;
 }
 .unique-person-contact {
 	position: absolute;
