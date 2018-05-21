@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="resume.css">
+</head>
+<body>
+	<header>
+		<span class="icon-resume">
+			<img class="" src="images/icon_resume.png">
+		</span>
+		<h1>个人简历</h1>
+	</header>
+
+	<main>
+		<div class="personal-info">
+			<p>姓名：Yohaha</p>
+		    <p>性别：女</p>
+		    <p>出生日期：1997.04.28</p>
+		</div>
+
+		<section class="project">
+		    <h3>项目经验</h3>
+		    <p>不存在的... -_-荒废了好几年，没有项目经验，从现在开始做-_-</p>
+		</section>
+		<section class="learning">
+		    <h3>学习经历</h3>
+		    <ul>
+		      <li>
+		        2017年12月中旬开始学习
+		        <p>
+		          看W3School，慕课的视频，尝试写页面，做FCC的任务，总是想要学的多点，导致基础不扎实
+		        </p>
+		      </li>
+		      <li>
+		        2018.02.25-2018.04.20按照IFE2017的任务来学习
+		        <p>每完成一个任务都手写笔记，记录学习过程中遇到的问题。<br />（手写笔记是因为好久没好好学习，完全记不住。这次依然觉得没学好，学习的过程中还是忽略了很多东西）</p>
+		      </li>
+		      <li>
+		        2018.04.24-？
+		        <p>
+		          跟学IFE2018（等了好久）,希望自己可以坚持下去，在学习的过程中多思考
+		        </p>
+		        <button id="btn">练习Demo</button>
+		        <div id="project-link">
+		        	<ul>
+		        		<li>
+		        			<a href="https://xxxxxxiyj.github.io/IFE2018/base/task05/index.html" target="_blank">
+		        				day05-day06:三种简历
+		        			</a>
+		        		</li>
+		        		<li>
+		        			<a href="https://xxxxxxiyj.github.io/IFE2018/base/task06/index.html" target="_blank">
+		        				day07-day08:布局练习
+		        			</a>
+		        		</li>
+		        		<li>
+		        			<a href="https://xxxxxxiyj.github.io/IFE2018/base/task07/index.html" target="_blank">
+		        				day09-day11:做一个漂亮的网站
+		        			</a>
+		        		</li>
+		        		<li>
+		        			<a href="https://xxxxxxiyj.github.io/IFE2018/base/task08/index.html" target="_blank">
+		        				day12-day15:复杂页面的实现
+		        			</a>
+		        		</li>
+
+		        		<li>
+		        			<a href="https://xxxxxxiyj.github.io/IFE2018/designer/task01/index.html" target="_blank">
+		        				简单的菜单动画效果
+		        			</a>
+		        		</li>
+		        		<li>
+		        			<a href="https://xxxxxxiyj.github.io/IFE2018/designer/task03/index.html" target="_blank">
+		        				小猫笑起来的动画
+		        			</a>
+		        		</li>
+		        		<li>
+		        			<a href="https://xxxxxxiyj.github.io/IFE2018/designer/task04/index.html" target="_blank">
+		        				卡片翻转动效
+		        			</a>
+		        		</li>
+		        	</ul>
+		        </div>
+		      </li>
+		    </ul>
+		</section>
+	</main>
+	
+	<script>
+		(function(){
+			var btn = document.getElementById("btn");
+			var project = document.getElementById("project-link");
+
+			btn.onclick = function(){
+				project.style.display = "block";
+			}
+		})();
+	</script>
+</body>
+</html>

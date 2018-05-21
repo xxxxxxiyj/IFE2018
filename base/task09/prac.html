@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            width: 100%;
+            height: 80px;
+            margin: 0;
+            text-align: center;
+            letter-spacing: 1em;
+            background: #702283;
+            color: #fff;
+            overflow: hidden;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            text-align: center;
+        }
+        input {
+            width: 340px;
+            height: 35px;
+            padding: 0 20px;
+            outline: none;
+            border: 1px solid #702283;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #46324c;
+        }
+        input:focus {
+            box-shadow: 0 0 3px #702283;
+        }
+        .btn-group {
+            margin-top: 50px;
+        }
+        button {
+            width: 80px;
+            height: 35px;
+            margin: 0 10px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            background: linear-gradient(#b778c7, #702283);
+            transition: all .5s;
+        }
+        button:hover {
+            cursor: pointer;
+            box-shadow: 0 0 7px #702283;
+        }
+    </style>
+</head>
+<body> 
+    <header>
+        <h1>简单运算器</h1>
+    </header>       
+    <div class="container">
+        <input id="first-number" type="number" value="0" placeholder="第一个数字">
+        <input id="second-number" type="number" value="0" placeholder="第二个数字">
+       <div class="btn-group">
+            <button id="add-btn">加</button>
+           <button id="minus-btn">减</button>
+           <button id="times-btn">乘</button>
+           <button id="divide-btn">除</button>
+       </div>
+        <p>运算结果:<span id="result"></span></p>
+    </div>
+    <script>
+        (function(){
+            var firstNum = document.getElementById("first-number");
+            var secondNum = document.getElementById("second-number");
+            var addBtn = document.getElementById("add-btn");
+            var minusBtn = document.getElementById("minus-btn");
+            var timesBtn = document.getElementById("times-btn");
+            var divideBtn = document.getElementById("divide-btn");
+            var result = document.getElementById("result");
+
+            addBtn.onclick = function(){
+                result.innerText = parseInt(firstNum.value) + parseInt(secondNum.value);
+            };
+
+            minusBtn.onclick = function(){
+                result.innerText = parseInt(firstNum.value) - parseInt(secondNum.value);
+            };
+
+            timesBtn.onclick = function(){
+                result.innerText = parseInt(firstNum.value) * parseInt(secondNum.value);
+            };
+
+            divideBtn.onclick = function(){
+                result.innerText = parseInt(firstNum.value) / parseInt(secondNum.value);
+            };
+        })();
+    </script>
+</body>
+</html>
