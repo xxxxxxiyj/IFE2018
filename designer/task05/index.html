@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>纯CSS制作绕中轴旋转的立方体</title>
+</head>
+
+<style>
+	body {
+		background: #000;
+	}
+	.stage {
+		perspective: 666px;
+	}
+	.box {
+		position: absolute;
+		left: 45%;
+		top: 100px;
+		width: 200px;
+		height: 200px;
+		/*transform: translateX(-50%);*/
+		transform-style: preserve-3d;
+		/*animation: cube-rotate 5s linear;*/
+	}
+	.box:hover {
+		animation: cube-rotate 5s infinite linear;
+	}
+	.box > * {
+		position: absolute;
+		width: 240px;
+		height: 240px;
+		background-color: #1b8af1;
+		border: 3px solid #0d8bff;
+		opacity: .35;
+		/*perspective-origin: 50% 50%;*/
+	}
+	.up {
+		transform: rotateX(90deg) translateZ(120px);
+	}
+	.down {
+		transform: rotateX(90deg) translateZ(-120px);
+	}
+	.left {
+		transform: rotateY(90deg) translateZ(120px);
+	}
+	.right {
+		transform: rotateY(90deg) translateZ(-120px);
+	}
+	.front {
+		transform: translateZ(120px);
+	}
+	.back {
+		transform: translateZ(-120px);
+	}
+	@keyframes cube-rotate {
+		 0% {
+	        transform: rotateY(0deg);
+	    }      
+	    100% {
+	        transform: rotateY(-360deg);
+	    }
+	}
+</style>
+<body>
+	<div class="stage">
+		<div class="box">
+			<div class="up"></div>
+			<div class="down"></div>
+			<div class="left"></div>
+			<div class="right"></div>
+			<div class="front"></div>
+			<div class="back"></div>
+		</div>
+	</div>
+</body>
+</html>
