@@ -12,15 +12,18 @@
 * {
 	box-sizing: border-box;
 }
+html,
+body {
+	height: 100%;
+	font: 14px/1.5 proximanova;
+}
 body {
 	margin: 0;
 	padding: 0;
-	font: 14px/1.5 proximanova;
+	overflow: hidden;
 }
 .container {
-	overflow: hidden;
-	/*width: 1580px;
-	margin: 0 auto;*/
+	height: 100%;
 }
 .badage-single-num,
 .badage-double-num,
@@ -53,20 +56,16 @@ body {
 	background: -o-linear-gradient(#f35337, #cd290c);       /* Opera 11.1-12.0 */
 	background: linear-gradient(#f35337, #cd290c);
 }
-.left-sidebar,
-.main-nav,
-.main-container {
-	float: left;
-}
+
 /* 
  *最左侧一列自适应浏览器高度，左上4个按钮相对浏览器固定位置
  *左下方两个按钮相对浏览器左下角固定位置
  */
 /* left-sidebar开始 */
 .left-sidebar {
+	position: fixed;
 	width: 100px;
-	margin-bottom: -10000px;
-	padding-bottom: 10000px;
+	height: 100%;
 	background-color: #1d2531;
 }
 .icon-list-top {
@@ -95,10 +94,11 @@ body {
  */
 /* main-nav开始 */
 .main-nav {
+	position: fixed;
+	top: 0;
+	left: 100px;
 	width: 250px;
-	margin-left: 100px;
-	margin-bottom: -10000px;
-	padding-bottom: 10000px;
+	height: 100%;
 	background-color: #222c3c;
 }
 .main-menu-item {
@@ -165,12 +165,25 @@ body {
  */
 /* main-container开始 */
 .main-container {
+	height: 100%;
+	margin-left: 350px;
 	width: calc(100% - 350px);
 }
 .main-container-header {
-	width: calc(100% - 350px);
+	position: fixed;
+    top: 0;
+    left: 350px;
+    right: 0;
 	height: 80px;
-	padding-left: 28px;
+	padding-left: 30px;
+	background: #fff;
+	z-index: 999;
+}
+.main-content {
+	display: flex;
+	flex: 1 1 auto;
+	height: 100%;
+	padding-top: 80px;
 }
 .main-container-header .title {
 	height: 80px;
@@ -231,9 +244,13 @@ body {
 
 /* main-content-left开始 */
 .main-content-left {
-	float: left;
-	width: 400px;
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 400px;
+	/*float: left;
+	width: 400px;*/
 	border: 1px solid #e5e8ee;
+	overflow: hidden;
 }
 .search-bar {
 	position: relative;
@@ -268,6 +285,10 @@ body {
 }
 .search-bar input:focus {
 	border: 1px solid #354052;
+}
+.user-info-list {
+	margin-right: -17px;
+	overflow-y: auto;
 }
 .user-info-list-item {
 	padding: 15px 20px 25px 30px;
@@ -322,10 +343,12 @@ body {
 
 /* main-content-right开始 */
 .main-content-right {
-	margin-left: 400px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
 }
 .status-bar {
-	height: 66px;
+	height: 67px;
 	padding: 0 30px;
 	border-top: 1px solid #e5e8ee;
 }
@@ -375,7 +398,10 @@ body {
 .btn-page {
 	margin-left: 10px;
 }
-
+.main-content-right .list {
+	margin-right: -17px;
+	overflow-y: auto;
+}
 .list-item-wrap {
 	position: relative;
 	padding: 25px 56px 25px 30px;
