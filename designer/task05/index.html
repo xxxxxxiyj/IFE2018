@@ -10,17 +10,17 @@
 		background: #000;
 	}
 	.stage {
-		perspective: 666px;
+		perspective: 300px;
+		perspective-origin: 51% 300px;
 	}
 	.box {
 		position: absolute;
 		left: 45%;
-		top: 100px;
+		top: 200px;
 		width: 200px;
 		height: 200px;
-		/*transform: translateX(-50%);*/
+		transform: rotateY(0);
 		transform-style: preserve-3d;
-		/*animation: cube-rotate 5s linear;*/
 	}
 	.box:hover {
 		animation: cube-rotate 5s infinite linear;
@@ -29,10 +29,9 @@
 		position: absolute;
 		width: 240px;
 		height: 240px;
-		background-color: #1b8af1;
-		border: 3px solid #0d8bff;
-		opacity: .35;
-		/*perspective-origin: 50% 50%;*/
+		background-color: rgba(27, 138, 241, .3);
+		border: 2px solid #0d8bff;
+		box-sizing: border-box;
 	}
 	.up {
 		transform: rotateX(90deg) translateZ(120px);
