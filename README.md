@@ -13,4 +13,4 @@
 * [制作小猫笑起来的动画](https://xxxxxxiyj.github.io/IFE2018/designer/task03/index.html)
 * [卡片翻转动效](https://xxxxxxiyj.github.io/IFE2018/designer/task04/index.html)
 * [纯CSS制作绕中轴旋转的立方体](https://xxxxxxiyj.github.io/IFE2018/designer/task05/index.html)
-* [CSS animation制作Slider](https://xxxxxxiyj.github.io/IFE2018/designer/task05/index.html)
+* [CSS animation制作Slider](https://xxxxxxiyj.github.io/IFE2018/designer/task06/index.html)
