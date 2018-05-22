@@ -22,7 +22,6 @@
 		display: none;
 		}
 		.wallpaper {
-			position: absolute;
 			width: 100%;
 			height: 100%;
 		}
@@ -32,7 +31,6 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			/*z-index: 3;*/
 		}
 		.pic-wrap {
 			position: fixed;
@@ -46,32 +44,44 @@
 		}
 		
 		.view:nth-child(1):checked ~ .wallpaper img:nth-child(1) {
+			-webkit-animation: pic01 0.5s ease-out;
+			-moz-animation: pic01 0.5s ease-out;
 			animation: pic01 0.5s ease-out;
 			z-index: 9;
 		}
 		.view:nth-child(2):checked ~ .wallpaper img:nth-child(2) {
+			-webkit-animation: pic02 0.5s ease-out;
+			-moz-animation: pic02 0.5s ease-out;
 			animation: pic02 0.5s ease-out;
 			z-index: 9;
 		}
 		.view:nth-child(3):checked ~ .wallpaper img:nth-child(3) {
+			-webkit-animation: pic03 1s ease-in;
+			-moz-animation: pic03 1s ease-in;
 			animation: pic03 1s ease-in;
 			z-index: 9;
 		}
 		.view:nth-child(4):checked ~ .wallpaper img:nth-child(4) {
+			-webkit-animation: pic04 1s ease-out;
+			-moz-animation: pic04 1s ease-out;
 			animation: pic04 1s ease-out;
 			z-index: 9;
 		}
 		.view:nth-child(5):checked ~ .wallpaper img:nth-child(5) {
+			-webkit-animation: pic05 .7s ease-in-out;
+			-moz-animation: pic05 .7s ease-in-out;
 			animation: pic05 .7s ease-in-out;
 			z-index: 9;
 		}
 		.view:not(:checked) ~ .wallpaper img {
+			-webkit-animation: notcheck 1s linear;
+			-moz-animation: notcheck 1s linear;
 			animation: notcheck 1s linear;
 		}
 
 		@keyframes notcheck {
-			from {z-index: 4;}
-			to {z-index: 4;}
+			from {z-index: 8;}
+			to {z-index: 8;}
 		}
 
 		@keyframes pic01 {
