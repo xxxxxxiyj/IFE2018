@@ -7,6 +7,7 @@
 * [day12-day15:复杂页面的实现](https://xxxxxxiyj.github.io/IFE2018/base/task08/index.html)
 * [day16:开始感受JS的乐趣](https://xxxxxxiyj.github.io/IFE2018/base/task09/resume.html)
 * [day17-day18:循环与判断](https://xxxxxxiyj.github.io/IFE2018/base/task10/calc.html)
+* [day19:DOM操作](https://xxxxxxiyj.github.io/IFE2018/base/task11/index.html)
 
 ## 设计师学院
 * [制作一个简单的菜单动画效果](https://xxxxxxiyj.github.io/IFE2018/designer/task01/index.html)
