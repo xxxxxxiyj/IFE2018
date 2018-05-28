@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.erik {
+			width: 480px;
+			height: 480px;
+			background-image: url(images/erik_ce204002.jpg);
+			/*background-position: 0 0;*/
+			background-position-x: 0;
+			background-position-y: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="erik"></div>
+
+	<script>
+		(function(){
+			var erik = document.querySelector(".erik");
+			// erik.style.backgroundPositionY = "-480px";
+
+			var timer = null;
+			var size = 8160;
+			function smile() {
+				clearInterval(timer);
+				var pos = erik.style.backgroundPositionY;
+				var dis = 0;
+
+				timer = setInterval(function(){
+					if(pos < size) {
+						dis = -480;
+					}else {
+						dis = 480;
+					}
+
+					pos += dis;
+					erik.style.backgroundPositionY = pos + "px";
+					
+				},100);
+			}
+
+			smile();
+		})();
+
+	</script>
+</body>
+</html>
