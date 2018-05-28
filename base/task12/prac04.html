@@ -15,35 +15,32 @@
 			
 			var timer = null;
 			var opacityValue = 1;
+			var isFadeOut = true;
 			function changeOpacity(value) {
 				clearInterval(timer);
 
 				timer = setInterval(function() {
+					fadeBtn.disabled = true;
 					var speed = 0;
-					if(opacityValue > value) {
-						speed = -0.1;
-					}else {
-						speed = 0.1;
-					}
-					if(opacityValue == value) {
+					opacityValue = isFadeOut ? opacityValue - 0.1 : opacityValue + 0.1;
+					
+					if(opacityValue <= 0 || opacityValue >= 1) {
+						fadeBtn.disabled = false;
+						fadeBtn.innerText = isFadeOut ? "淡入" : "淡出";
+						isFadeOut = !isFadeOut;
 						clearInterval(timer);
-					}else {
-						opacityValue += speed;
 					}
 
 					fadeObj.style.opacity = opacityValue;
-					// fadeBtn.style.disabled = "disabled";
-					fadeBtn.setAttribute("disabled", "disabled");
+					
 				}, 100);
 			}
 
 			fadeBtn.onclick = function() {
 				if(fadeBtn.innerText === "淡出") {
 					changeOpacity(0);
-					fadeBtn.innerText = "淡入";
 				}else {
 					changeOpacity(1);
-					fadeBtn.innerText = "淡出";
 				}
 			}
 		})();

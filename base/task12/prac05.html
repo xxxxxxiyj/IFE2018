@@ -8,9 +8,7 @@
 			width: 480px;
 			height: 480px;
 			background-image: url(images/erik_ce204002.jpg);
-			/*background-position: 0 0;*/
-			background-position-x: 0;
-			background-position-y: 0;
+			background-position: 0 0;
 		}
 	</style>
 </head>
@@ -20,23 +18,22 @@
 	<script>
 		(function(){
 			var erik = document.querySelector(".erik");
-			// erik.style.backgroundPositionY = "-480px";
 
 			var timer = null;
-			var size = 8160;
+			var bool = true;
+			var pos = 0;
 			function smile() {
 				clearInterval(timer);
-				var pos = erik.style.backgroundPositionY;
-				var dis = 0;
-
+				
 				timer = setInterval(function(){
-					if(pos < size) {
-						dis = -480;
-					}else {
-						dis = 480;
+					pos = bool ? pos - 480 : pos + 480;
+					if(pos === -7680) {
+						bool = false;
+					}
+					if(pos === 0) {
+						bool = true;
 					}
 
-					pos += dis;
 					erik.style.backgroundPositionY = pos + "px";
 					
 				},100);

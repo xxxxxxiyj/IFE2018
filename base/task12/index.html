@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度前端技术学院</title>
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<header>
+		<img class="logo" src="images/logo_c9785ff2.png">
+	</header>
+
+	<main>
+		<section class="banner">
+			<div class="banner-content">
+				<h2>面向大学生的前端技术学习平台</h2>
+				<p>
+					由百度创办的免费的前端技术学习实践、交流、分享平台
+					<br />
+					一年之计在于春，已经开始报名，期待和您一起学习
+					<br />
+					<a class="" href="#">查看电动玩具季班详情</a>
+				</p>
+				<a class="join-link" href="#">立即报名</a>
+				<a class="enter-task" href="#">查看任务</a>
+			</div>
+		</section>
+
+		<section class="practice">
+			<div class="practice-content">
+				<h2>
+					纸上得来终觉浅
+					<br />
+					绝知此事要躬行
+				</h2>
+				
+				<p>
+					我们精心设计了许多编码任务
+					<br />
+					让你可以循序渐进、由浅入深
+					<br />
+					地在实践中掌握技术
+				</p>
+			</div>
+			<div id="erik" class="erik"></div>
+		</section>
+
+		<section class="communication">
+			<div class="commun-content">
+				<h2>三人行必有我师</h2>
+				<p>
+					各种经验告诉我们，总结、分享、交流对学习效率与效果的提升非常明显，我们致力于帮助大家建设一个更好的技术交流与分享氛围。
+				</p>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="footer-content">
+			<div class="link-item">
+				IFE微信公众号：baidu_ife&nbsp;&nbsp;IFE微博:
+				<a target="_blank" href="#">Baidu前端技术学院</a>
+			</div>
+			
+			<div class="link-item">
+				<span>友情链接</span>
+				<a title="百度EFE前端团队" href="#">百度EFE</a>
+				<a href="#">百度语音搜索</a>
+				<a href="#">百度传课</a>
+				<a href="#">百度校园</a>
+				<a href="#">百度校园招聘</a>
+			</div>
+			
+			<div class="link-item">
+				<span>学习资源</span>
+				<a href="#">IFE2015春季班</a>
+				<a href="#">IFE2015暑假营</a>
+			</div>
+			
+			<div class="link-item">
+				&copy;2016&nbsp;Baidu&nbsp;
+				<a href="#">使用百度前必读</a>
+				<a href="#">意见反馈</a>
+				京ICP证030173号
+			</div>
+		</div>
+	</footer>
+
+	<script>
+		var erik = document.getElementById("erik");
+		function smile() {
+			var timer = null;
+			var bool = true;
+			var pos = -2;
+
+			setInterval(function(){
+				clearInterval(timer);
+				pos = bool ? pos - 480 : pos + 480;
+				if(pos === -7682 || pos === -2) {
+					bool = !bool;
+				}
+				erik.style.backgroundPositionY = pos + "px";
+			},100);
+		}
+		smile();
+	</script>
+</body>
+</html>
