@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sort</title>
+</head>
+<body>
+	
+	<script>
+		var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+
+		var fruitAnimal = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+
+		var numArr = [[10, 14], [16, 60], [7, 44], [26, 35], [22, 63]];
+
+		var objArr = [
+		    {
+		        id: 1,
+		        name: 'candy',
+		        value: 40
+		    }, {
+		        id: 2,
+		        name: 'Simon',
+		        value: 50
+		    }, {
+		        id: 3,
+		        name: 'Tony',
+		        value: 45
+		    }, {
+		        id: 4,
+		        name: 'Annie',
+		        value: 60
+		    }
+		];
+
+		arr.sort((a,b) => b - a);
+		console.log(arr);
+
+		console.log(fruitAnimal.sort());
+
+		numArr.sort((a,b) => b[1] - a[1]);
+		console.log(numArr);
+
+		objArr.sort((a,b) => a.value - b.value);
+		console.log(objArr);
+	</script>
+</body>
+</html>

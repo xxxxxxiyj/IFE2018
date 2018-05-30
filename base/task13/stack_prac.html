@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Stack</title>
+</head>
+<body>
+	<input id="stack-input" type="text">
+	<p id="stack-cont">栈内容：apple&lt;-pear</p>    
+	<button id="push-btn">进栈</button>
+	<button id="pop-btn">退栈</button>
+	<button id="font-btn">打印栈顶元素内容</button>
+	<button id="empty-btn">判断栈是否为空</button>
+
+	<script>
+
+		var stack = ["apple", "pear"];
+		var stackInput = document.getElementById("stack-input");
+		var stackCont = document.getElementById("stack-cont");
+		var pushBtn = document.getElementById("push-btn");
+		var popBtn = document.getElementById("pop-btn");
+		var fontBtn = document.getElementById("font-btn");
+		var emptyBtn = document.getElementById("empty-btn");
+
+		// 栈顶在右侧
+		// pushBtn.onclick = function() {
+		// 	stack.push(stackInput.value);
+		// 	stackCont.innerText = "栈内容：" + stack.join("->");
+		// }
+		
+		// popBtn.onclick = function() {
+		// 	stack.pop();
+		// 	stackCont.innerText = "栈内容：" + stack.join("->");
+		// }
+
+		// fontBtn.onclick = function() {
+		// 	stackCont.innerText = "队头元素：" + stack[stack.length - 1];
+		// }
+
+		// 栈顶在左侧
+		pushBtn.onclick = function() {
+			stack.unshift(stackInput.value);
+			stackCont.innerText = "栈内容：" + stack.join("<-");
+		}
+		
+		popBtn.onclick = function() {
+			stack.shift();
+			stackCont.innerText = "栈内容：" + stack.join("<-");
+		}
+
+		fontBtn.onclick = function() {
+			stackCont.innerText = "队头元素：" + stack[0];
+		}
+
+		emptyBtn.onclick = function() {
+			if(stack.length === 0) {
+				stackCont.innerText = "队列为空";
+			}else {
+				stackCont.innerText = "队列不为空";
+			}
+		}
+		
+
+	</script>
+
+</body>
+</html>

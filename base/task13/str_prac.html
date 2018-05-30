@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IFE ECMAScript</title>
+</head>
+<body>
+	<div>
+	    <label>String A:
+	        <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+	    </label>
+	    <textarea id="str-a"></textarea>
+	    <label>String B:
+	        <input id="radio-b" type="radio" name="str-obj" value="b">
+	    </label>
+	    <textarea id="str-b"></textarea>        
+	    <label>Num A：<input id="num-a" type="number" value="0"></label>
+	    <label>Num B：<input id="num-b" type="number" value="1"></label>
+	</div>
+	<div>
+	    <button>获取当前选中输入的内容长度</button>
+	    <button>当前选中输入中的第3个字符</button>
+	    <button>把两个输入框的文字连接在一起输出（concat）</button>
+	    <button>输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+	    <button>输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+	    <button>使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+	    <button>当前选中输入框的行数</button>
+	    <button>使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+	    <button>把所选输入框中的内容全部转为大写</button>
+	    <button>把所选输入框中的内容全部转为小写</button>
+	    <button>把所选输入框中内容的半角空格全部去除</button>
+	    <button>把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+	</div>
+	<p id="result"></p>
+
+	<script>
+		(function(){
+			var rA = document.getElementById("radio-a");
+			var rB = document.getElementById("radio-b");
+			var strA = document.getElementById("str-a");
+			var strB = document.getElementById("str-b");
+			var numA = document.getElementById("num-a");
+			var numB = document.getElementById("num-b");
+			var result = document.getElementById("result");
+
+			var btn = document.getElementsByTagName("button");
+			btn[0].onclick = function() {
+				if(rA.checked) {
+					result.innerText = strA.value.length;
+				}
+				if(rB.checked) {
+					result.innerText = strB.value.length;
+				}
+			}
+
+			btn[1].onclick = function() {
+				if(rA.checked) {
+					result.innerText = strA.value[2];
+				}
+				if(rB.checked) {
+					result.innerText = strB.value[2];
+				}
+			}
+
+			btn[2].onclick = function() {
+				result.innerText = strA.value.concat(strB.value);
+			}
+
+			btn[3].onclick = function() {
+				result.innerText = strB.value.indexOf(strA.value);
+			}
+
+			btn[4].onclick = function() {
+				result.innerText = strA.value.lastIndexOf(strB.value);
+			}
+
+			btn[5].onclick = function() {
+				if(rA.checked) {
+					result.innerText = strA.value.slice(parseInt(numA), parseInt(numB));
+				}
+				if(rB.checked) {
+					result.innerText = strB.value.slice(parseInt(numA), parseInt(numB));
+				}
+			}
+
+			btn[6].onclick = function() {
+				if(rA.checked) {
+					result.innerText = strA.value.split(/\r?\n/).length;
+				}
+				if(rB.checked) {
+					result.innerText = strB.value.split(/\r?\n/).length;
+				}
+			}
+
+			btn[7].onclick = function() {
+				if(rA.checked) {
+					result.innerText = strA.value.substr(parseInt(numA), parseInt(numB));
+				}
+				if(rB.checked) {
+					result.innerText = strB.value.substr(parseInt(numA), parseInt(numB));
+				}
+			}
+
+			btn[8].onclick = function() {
+				if(rA.checked) {
+					result.innerText = strA.value.toUpperCase();
+				}
+				if(rB.checked) {
+					result.innerText = strB.value.toUpperCase();
+				}
+			}
+
+			btn[9].onclick = function() {
+				if(rA.checked) {
+					result.innerText = strA.value.toLowerCase();
+				}
+				if(rB.checked) {
+					result.innerText = strB.value.toLowerCase();
+				}
+			}
+
+			btn[10].onclick = function() {
+				var txt;
+				if(rA.checked) {
+					txt = strA.value;
+				}
+				if(rB.checked) {
+					txt = strB.value;
+				}
+				result.innerText = txt.replace(/ /g,"");
+			}
+		})();
+
+
+		/*
+		实现一个字符串头尾去除空格的函数
+		注意需要去除的空格，包括全角、半角空格
+		暂时不需要学习和使用正则表达式的方式
+		*/
+		function diyTrim(str) {
+		    var result = "";
+		    var whitespace = "\u3000\u0020"
+		    // do something
+		    for(var i = 0; i < str.length; i++) {
+		    	if(whitespace.indexOf(str[i]) === -1) {
+		    		str = str.slice(i);
+		    		break;
+		    	}
+		    }
+
+		    for(var i = str.length - 1; i > 0; i++) {
+		    	if(whitespace.indexOf(str[i]) === -1) {
+		    		str = str.slice(0, i);
+		    		break;
+		    	}
+		    }
+		    return str;
+
+		    // return result
+		}
+
+		// 测试用例
+		console.log(diyTrim(' a f b    ')); // ->a f b
+		console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+		console.log(diyTrim('1    ')); // ->1
+		console.log(diyTrim('　　f')); // ->f
+		console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+		console.log(diyTrim(' ')); // ->
+		console.log(diyTrim('　')); // ->
+		console.log(diyTrim('')); // ->
+
+		/*
+		去掉字符串str中，连续重复的地方
+		*/
+		function removeRepetition(str) {
+		    var result = "";
+
+		    // do something
+		   	var regex = /(.)\1+/g;  // .匹配除换行符以外的任意字符  \1指()中匹配到的内容
+		   	return str.replace(regex,'$1');  //$1即匹配到的字符
+
+		    // return result;
+		}
+
+		// 测试用例
+		console.log(removeRepetition("aaa")); // ->a
+		console.log(removeRepetition("abbba")); // ->aba
+		console.log(removeRepetition("aabbaabb")); // ->abab
+		console.log(removeRepetition("")); // ->
+		console.log(removeRepetition("abc")); // ->abc
+	</script>
+</body>
+</html>

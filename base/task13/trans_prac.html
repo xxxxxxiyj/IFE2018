@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象与数组的转换</title>
+</head>
+<body>
+	
+	<script>
+		var scoreArray = [];
+		var scoreObject = {
+		    "Tony": {
+		        "Math": 95,
+		        "English": 79,
+		        "Music": 68
+		    }, 
+		    "Simon": {
+		        "Math": 100,
+		        "English": 95,
+		        "Music": 98
+		    }, 
+		    "Annie": {
+		        "Math": 54,
+		        "English": 65,
+		        "Music": 88
+		    }
+		}
+
+		function objToArr(obj) {
+			var res = [];
+			var pro = [];
+			for(var i in obj) {
+				res.push(i);
+				for(var j in obj[i]) {
+					pro.push(obj[i][j]);
+				}
+			}
+			for(var i = 0; i < res.length; i++) {
+				scoreArray[i][0] = res[i];
+				for(var j = 0; j < pro.length)
+			}
+		}
+		console.log(objToArr(scoreObject));
+
+		for(var i in scoreObject) {
+			scoreArray.push(i);
+		}
+	</script>
+</body>
+</html>

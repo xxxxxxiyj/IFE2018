@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Object</title>
+</head>
+<body>
+	<script>
+		var tree = {
+		    "id": 0,
+		    "name": "root",
+		    "left": {
+		        "id": 1,
+		        "name": "Simon",
+		        "left": {
+		            "id": 3,
+		            "name": "Carl",
+		            "left": {
+		                "id": 7,
+		                "name": "Lee",
+		                "left": {
+		                    "id": 11,
+		                    "name": "Fate"
+		                }
+		            },
+		            "right": {
+		                "id": 8,
+		                "name": "Annie",
+		                "left": {
+		                    "id": 12,
+		                    "name": "Saber"
+		                }
+		            }
+		        },
+		        "right": {
+		            "id": 4,
+		            "name": "Tony",
+		            "left": {
+		                "id": 9,
+		                "name": "Candy"
+		            }
+		        }
+		    },
+		    "right": {
+		        "id": 2,
+		        "name": "right",
+		        "left": {
+		            "id": 5,
+		            "name": "Carl",
+		        },
+		        "right": {
+		            "id": 6,
+		            "name": "Carl",
+		            "right": {
+		                "id": 10,
+		                "name": "Kai"
+		            }        
+		        }
+		    }
+		}
+
+		// 假设id和name均不会重复，根据输入name找到对应的id
+		function findIdByName(name) {
+
+		}
+
+		// 假设id和name均不会重复，根据输入id找到对应的name
+		function findNameById(id) {
+
+		}
+
+		// 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+		function getListWithDLR() {
+			this.preOrder = function(callback) {
+				preOrder(tree, callback);
+			}
+			var preOrder = function(node, callback) {
+				if(node !== null) {
+					callback(node.name);
+					if(Object.keys(node).includes("left")) {
+						preOrder(node.left, callback);
+					}
+					if(Object.keys(node).includes("right")) {
+						preOrder(node.right, callback);
+					}	
+				}
+			};
+
+		}
+
+		// 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+		function getListWithLDR() {
+			this.inOrder = function(callback) {
+				inOrder(tree, callback);
+			}
+			var inOrder = function(node, callback) {
+				if(node !== null) {
+					if(Object.keys(node).includes("left")) {
+						inOrder(node.left, callback);
+					}
+					callback(node.name);
+					if(Object.keys(node).includes("right")) {
+						inOrder(node.right, callback);
+					}	
+				}
+			};
+
+		}
+
+		// 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+		function getListWithLRD() {
+			this.postOrder = function(callback) {
+				postOrder(tree, callback);
+			}
+			var postOrder = function(node, callback) {
+				if(node !== null) {
+					if(Object.keys(node).includes("left")) {
+						postOrder(node.left, callback);
+					}
+					if(Object.keys(node).includes("right")) {
+						postOrder(node.right, callback);
+					}
+					callback(node.name);
+				}
+			}
+		}
+
+		function printNode(value) {
+			console.log(value);
+		}
+
+		// var DLR = new getListWithDLR();
+		// DLR.preOrder(printNode);
+		
+		// var LDR = new getListWithLDR();
+		// LDR.inOrder(printNode);
+		
+		var LRD = new getListWithLRD();
+		LRD.postOrder(printNode);
+	</script>
+</body>
+</html>
