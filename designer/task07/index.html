@@ -97,9 +97,11 @@
             .form__label__content {
                 position: absolute;
             }
-            .form__input:focus ~ .form__label {
+            .form__input:focus ~ .form__label,
+            .form__filled{
             	top: -10px;
             	font-size: .9em;
+            	/*transition: all .2s ease-in-out;*/
             	/*animation: toUp .2s ease-in-out;
                 animation-fill-mode: forwards;*/
             }
@@ -159,22 +161,40 @@
     		$(".form__input").focus(function(){
     			$(this).addClass("blue__border");
     		});
+
     		$(".form__input").blur(function(){
     			if($(this).val() !== ""){
-    				$(this).next().css("top", "-10px");
-    				$(this).next().css("font-size", ".9em");
+    				$(this).next().addClass("form__filled")
+    			}else {
+    				$(this).next().removeClass("form__filled");
     			}
     			$(this).removeClass("blue__border");
     		});
     		
+    		// $("#password").blur(function(){
+    		// 	if($("#email").val() !== "" && $("#password").val() !== ""){
+    		// 		$(".btn").addClass("animated pulse");
+    		// 			setTimeout(function(){
+    		// 				$(".btn").removeClass("animated pulse");
+    		// 			}, 5000);
+    		// 	}
+    		// });
+    		
+    		$("#email").blur(function(){
+    			check();
+    		})
     		$("#password").blur(function(){
+    			check();
+    		})
+
+    		function check(){
     			if($("#email").val() !== "" && $("#password").val() !== ""){
     				$(".btn").addClass("animated pulse");
     					setTimeout(function(){
     						$(".btn").removeClass("animated pulse");
     					}, 5000);
     			}
-    		});
+    		}
     		
     	});
     </script>
