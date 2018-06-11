@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Day25-Day27</title>
+	<style>
+		#clock_01 {
+			margin: 50px auto;
+			text-align: center;
+		}
+		#clock_02 {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="clock_01"></div>
+	<div id="clock_02"></div>
+
+	<script>
+		(function(){
+
+			// GoStep函数
+			function GoSteps(num){
+				if(arguments.length === 0 || num === true){
+					console.log("Go 1 次");
+				}else if(!num || num < 0 || typeof num !== "number"){
+					console.log("0 次");
+				}else{
+					console.log("Go " + parseInt(num) + " 次");
+				}
+			}
+
+			// 时钟
+			var clock01 = document.getElementById("clock_01");
+			var clock02 = document.getElementById("clock_02");
+			function startTime() {
+				var now = new Date();
+				year = now.getFullYear();
+				month = now.getMonth();
+				date = now.getDate();
+				day = now.getDay();
+				hour = now.getHours();
+				minutes  = now.getMinutes();
+				seconds = now.getSeconds();
+
+
+				month = checkTime(month);
+				date = checkTime(date);
+				hour = checkTime(hour);
+				minutes = checkTime(minutes);
+				seconds = checkTime(seconds);
+				clock01.innerText = timeTxt01(year, month, date, getWeekday01(day), hour,minutes, seconds);
+				clock02.innerText = timeTxt02(year, month, date, getWeekday02(day), hour,minutes, seconds) + " " + getNoon(now);
+			}
+			setInterval(function() {
+				startTime();
+			}, 1000);
+
+			function timeTxt01(year, month, date, day, hour, minutes, seconds) {
+				return year + "年" + month + "月" + date + "日" + day + " " + hour + ":" + minutes + ":" + seconds;
+			}
+
+			function timeTxt02(year, month, date, day, hour, minutes, seconds) {
+				return year + "-" + month + "-" + date + " " + day + " " + hour + ":" + minutes + ":" + seconds;
+			}
+
+			function checkTime(n) {
+				if(n < 10){
+					n = "0" + n;
+				}
+				return n;
+			}
+
+			function getNoon(date){
+				var noon = date.toLocaleString();
+				if(noon.indexOf("上") !== -1){
+					return "AM";
+				}else {
+					return "PM";
+				}
+			}
+
+			function getWeekday01(num) {
+				switch(num){
+					case 0:
+						return "星期日";
+						break;
+					case 1:
+						return "星期一";
+						break;
+					case 2:
+						return "星期二";
+						break;
+					case 3:
+						return "星期三";
+						break;
+					case 4:
+						return "星期四";
+						break;
+					case 5:
+						return "星期五";
+						break;
+					case 6:
+						return "星期六";
+						break;
+				}
+			}
+			function getWeekday02(num) {
+				switch(num){
+					case 0:
+						return "Sunday";
+						break;
+					case 1:
+						return "Monday";
+						break;
+					case 2:
+						return "Tuesday";
+						break;
+					case 3:
+						return "Wednesday";
+						break;
+					case 4:
+						return "Thursday";
+						break;
+					case 5:
+						return "Friday";
+						break;
+					case 6:
+						return "Saturday";
+						break;
+				}
+			}
+		})();
+	</script>
+</body>
+</html>
