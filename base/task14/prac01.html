@@ -37,13 +37,12 @@
 			function startTime() {
 				var now = new Date();
 				year = now.getFullYear();
-				month = now.getMonth();
+				month = now.getMonth() + 1;
 				date = now.getDate();
 				day = now.getDay();
 				hour = now.getHours();
 				minutes  = now.getMinutes();
 				seconds = now.getSeconds();
-
 
 				month = checkTime(month);
 				date = checkTime(date);
@@ -55,7 +54,7 @@
 			}
 			setInterval(function() {
 				startTime();
-			}, 1000);
+			}, 1000); // 1000ms = 1s
 
 			function timeTxt01(year, month, date, day, hour, minutes, seconds) {
 				return year + "年" + month + "月" + date + "日" + day + " " + hour + ":" + minutes + ":" + seconds;
