@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>IFE ECMAScript Day 25</title>
+</head>
+
+<body>
+
+    <!--  task2-4 -->
+
+    <p id="time"></p>
+    <p id="time2"></p>
+
+    <!--  task5 -->
+
+    <select id="year-select"></select>
+    <select id="month-select"></select>
+    <select id="date-select"></select>
+    <select id="hour-select"></select>
+    <select id="minute-select"></select>
+    <select id="second-select"></select>
+
+    <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+
+</body>
+<script>
+    /* ---------- task5 ---------- */
+
+    (function init() {
+
+        // 获取选项
+        let yearSelect = document.querySelector('#year-select')
+        let monthSelect = document.querySelector('#month-select')
+        let dateSelect = document.querySelector('#date-select')
+        let hourSelect = document.querySelector('#hour-select')
+        let minSelect = document.querySelector('#minute-select')
+        let secSelect = document.querySelector('#second-select')
+
+        // 插入相应数量的option
+        insertOptionNode(yearSelect, 2000, 2032)
+        insertOptionNode(monthSelect, 1, 12)
+        insertOptionNode(dateSelect, 1, setDateNum(yearSelect.value, monthSelect.value))
+        insertOptionNode(hourSelect, 0, 23)
+        insertOptionNode(minSelect, 0, 59)
+        insertOptionNode(secSelect, 0, 59)
+
+        // 更新结果到HTML
+        function updateHTML() {
+            let result = document.querySelector('#result-wrapper') // 获取结果节点
+            let selectedTime = new Date(yearSelect.value, monthSelect.value - 1, dateSelect.value, hourSelect.value,
+                minSelect.value, secSelect.value) // 获取所选的日期
+
+            let parsedPeriod = calculateTime(selectedTime)[0] // 计算相差时间
+            let order = calculateTime(selectedTime)[1] // 返回所选时间是在当前时间之前还是之后
+
+            // 合并字符串
+            let strA = '现在距离 ' + yearSelect.value + '年' + monthSelect.value + '月' + dateSelect.value + '日' +
+                parseDay(selectedTime.getDay(), 0) + ' ' + parseTimeWidth(hourSelect.value) + ':' + parseTimeWidth(minSelect
+                    .value) + ':' + parseTimeWidth(secSelect.value) + ' '
+            let strB = (order ? '还有 ' : '已经过去 ') + parsedPeriod[0] + ' 天 ' + parsedPeriod[1] + ' 小时 ' + parsedPeriod[2] + ' 分 ' + parsedPeriod[3] + ' 秒'
+
+            result.innerHTML = strA + strB // 输出结果
+        }
+
+        // 加载时即执行计时并更新HTML
+        updateHTML()
+        setInterval(() => {
+            updateHTML()
+        }, 1000)
+
+        // 计算时间差
+        function calculateTime(time) {
+            let now = new Date() // 现在的时间
+            let d // 两段时间的差值
+            let order // 所选时间是在当前时间之后(未来)吗
+            if (now < time) {
+                d = time - now
+                order = true // 
+            } else {
+                d = now - time
+                order = false
+            }
+            return [parsePeriod(d), order]
+        }
+
+        // 输入一段时间(毫秒数), 格式化时间, 返回天\小时\分钟\秒
+        function parsePeriod(time) {
+            let dDay = Math.floor(time / (24 * 3600 * 1000))
+            // 计算出小时数  
+            let remain1 = time % (24 * 3600 * 1000) // 计算天数后剩余的毫秒数  
+            let dHour = Math.floor(remain1 / (3600 * 1000))
+            // 计算相差分钟数  
+            let remain2 = remain1 % (3600 * 1000); // 计算小时数后剩余的毫秒数  
+            let dMin = Math.floor(remain2 / (60 * 1000))
+            // 计算相差秒数
+            let remain3 = remain2 % (60 * 1000); // 计算小时数后剩余的毫秒数  
+            let dSec = Math.floor(remain3 / (1000))
+            return [dDay, dHour, dMin, dSec]
+        }
+
+        // 重置日期选项
+        function resetDate() {
+            dateSelect.innerHTML = ''
+            insertOptionNode(dateSelect, 1, setDateNum(yearSelect.value, monthSelect.value))
+        }
+
+        // 向父节点插入一定数量的option子节点方法
+        function insertOptionNode(parent, startnum, endnum) {
+            for (let i = startnum; i <= endnum; i++) {
+                let newNode = document.createElement('option')
+                newNode.setAttribute('value', i)
+                newNode.innerHTML = i
+                parent.appendChild(newNode)
+            }
+        }
+
+        /**
+         * 判断是否是闰年
+         * @param {Number} 年份
+         * @return {Boolean} true: 是闰年; false: 不是闰年
+         */
+        function isLeapYear(year) {
+            return year % 4 === 0 && year % 100 !== 0 || year % 400 == 0
+        }
+
+        // 根据可选的月份设置日
+        function setDateNum(y, m) {
+            let date
+            let year = parseInt(y)
+            let month = parseInt(m)
+            switch (month) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12: // 31天的月
+                    date = 31
+                    break
+                case 2:
+                    if (isLeapYear(year)) { // 2月
+                        date = 29
+                    } else {
+                        date = 28
+                    }
+                    break
+                case 4:
+                case 6:
+                case 9:
+                case 11: // 30天的月
+                    date = 30
+                    break
+            }
+            return date
+        }
+
+        // 创建数组
+        let selectArr = [yearSelect, monthSelect, dateSelect, hourSelect, minSelect, secSelect]
+        for (let i = 0; i < selectArr.length; i++) { // 绑定点击选项事件
+            selectArr[i].addEventListener('change', function () {
+                if (i === 1 || i === 0) { // 如果改变年或月选项, 重置日选项
+                    resetDate()
+                }
+                updateHTML() // 直接更新HTML
+            })
+        }
+
+    })();
+
+    /* ---------- task2-4 ---------- */
+
+    (function start() {
+        updateTime()
+        setInterval(() => {
+            updateTime()
+        }, 1000)
+    })();
+
+    function updateTime() {
+        let p = document.querySelector('#time')
+        let p2 = document.querySelector('#time2')
+        p.innerHTML = getNow()
+        p2.innerHTML = newGetNow()
+    }
+
+    function getNow() { //格式为 YYYY 年 MM 月 DD 日 星期 D HH:mm:ss
+        let d = new Date()
+        let y = d.getFullYear()
+        let m = d.getMonth() + 1
+        let date = d.getDate()
+        let day = parseDay(d.getDay(), 0)
+        let h = parseTimeWidth(d.getHours())
+        let min = parseTimeWidth(d.getMinutes())
+        let sec = parseTimeWidth(d.getSeconds())
+        return y + '年' + m + '月' + date + '日' + ' ' + day + ' ' + h + ':' + min + ':' + sec
+        // 需求变更 
+        // return y + '-' + m + '-' + date + ' ' + day + h + ':' + min + ':' + sec
+    }
+
+    function newGetNow() { // 需求变更 格式为 2008-10-10 Monday 07:10:30 PM
+        let d = new Date()
+        let y = d.getFullYear()
+        let m = d.getMonth() + 1
+        let date = d.getDate()
+        let day = parseDay(d.getDay(), 1)
+        let h = parseTimeWidth(d.getHours())
+        let min = parseTimeWidth(d.getMinutes())
+        let sec = parseTimeWidth(d.getSeconds())
+        let noon = parseNoon(d.getHours())
+        return y + '-' + m + '-' + date + ' ' + day + ' ' + h + ':' + min + ':' + sec + ' ' + noon
+    }
+
+    function parseNoon(num) {
+        if (num < 12) {
+            return 'AM'
+        } else {
+            return 'PM'
+        }
+    }
+
+    function parseDay(day, type) { // 星期转换汉字 type 0 中文, type 1 英文
+        switch (day) {
+            case 0:
+                return type == 0 ? '星期日' : 'Sunday'
+                break
+            case 1:
+                return type == 0 ? '星期一' : 'Monday'
+                break
+            case 2:
+                return type == 0 ? '星期二' : 'Tuesday'
+                break
+            case 3:
+                return type == 0 ? '星期三' : 'Wednesday'
+                break
+            case 4:
+                return type == 0 ? '星期四' : 'Thurday'
+                break
+            case 5:
+                return type == 0 ? '星期五' : 'Friday'
+                break
+            case 6:
+                return type == 0 ? '星期六' : 'Saturday'
+                break
+        }
+    }
+
+    function parseTimeWidth(num) { // 时间前加0
+        if (num >= 0 && num < 10) {
+            return '0' + num
+        } else {
+            return num
+        }
+    }
+
+    /* ---------- task1 ---------- */
+
+    function Go() {
+        console.log("Go");
+    }
+
+    function isNumber(o) { //是否数字
+        return Object.prototype.toString.call(o).slice(8, -1) === 'Number'
+    }
+
+    function GoSteps(n) {
+        if (isNumber(n)) { // n是数字
+            n = Math.floor(n)
+            if (n > 0) {
+                while (n--) {
+                    Go()
+                }
+            }
+        } else if (n === true || n === undefined) { // n不是数字
+            Go()
+        }
+    }
+
+    // GoSteps(10); // Go 10次
+    // GoSteps(1); // Go 1次
+    // GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+    // GoSteps(0); // 0次
+    // GoSteps(-1); // 0次
+    // GoSteps(1.4); // Go 1次
+    // GoSteps(1.6); // Go 1次
+    // GoSteps(-1); // 0次
+    // GoSteps(true); // Go 1次
+    // GoSteps(false); // 0次
+    // GoSteps("Test"); // 0次
+    // GoSteps(NaN); // 0次
+    // GoSteps(null); // 0次
+</script>
+
+</html>
