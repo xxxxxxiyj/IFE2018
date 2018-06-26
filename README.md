@@ -8,7 +8,8 @@
 * [day16:开始感受JS的乐趣](https://xxxxxxiyj.github.io/IFE2018/base/task09/resume.html)
 * [day17-day18:循环与判断](https://xxxxxxiyj.github.io/IFE2018/base/task10/calc.html)
 * [day19:DOM操作](https://xxxxxxiyj.github.io/IFE2018/base/task11/index.html)
-* day20-day21:JS事件练习[仿IFE2016首页](https://xxxxxxiyj.github.io/IFE2018/base/task12/index.html)
+* [day20-day21:JS事件练习：仿IFE2016首页](https://xxxxxxiyj.github.io/IFE2018/base/task12/index.html)
+* [day25-day27:JavaScript函数封装，Date对象](https://xxxxxxiyj.github.io/IFE2018/base/task14/index.html)
 
 
 ## 设计师学院
