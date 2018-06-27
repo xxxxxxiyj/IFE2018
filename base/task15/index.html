@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>IFE Day28-Day30</title>
+</head>
+<body>
+	<div class="wrapper">
+	    <input id="email-input" type="text">
+	    <ul id="email-sug-wrapper" class="email-sug"></ul>
+	</div>
+
+	<script>
+		(function() {
+			// 获取输入框与提示列表
+			var input = document.getElementById("email-input");
+			var sugWrapper = document.getElementById("email-sug-wrapper");
+
+			// 邮箱后缀List参考
+			var postfixList = ['@163.com', '@gmail.com', '@126.com', '@qq.com', '@263.net'];
+
+			input.oninput = function() {
+				let email = getEmail();  // 获取用户输入
+				console.log(email);
+				let prompt = createPrompt(email); // 生成提示框中的提示内容
+				console.log(prompt);
+				addPrompt(prompt);
+				promptToogle();
+			}
+
+			/**
+			 * 获取用户输入
+			 * @return {string} [将输入内容删除开头与结尾的空格并返回]
+			 */
+			function getEmail() {
+				let email = input.value;
+				return email.trim();
+			}
+
+			/**
+			 * 生成提示框中的提示内容
+			 * @param  {string} email [用户输入]
+			 * @return {Array}  将用户输入与每一个后缀结合，并返回结合后的内容
+			 */
+			function createPrompt(email) {
+				console.log("createPrompt:" + email);
+				let prompt = [];
+				for(let i = 0; i < postfixList.length; i++) {
+					prompt[i] = email + postfixList[i];
+				}
+				return prompt;
+			}
+
+			/**
+			 * 将提示内容添加到提示框（emial-sug-wrapper）中
+			 */
+			function addPrompt(prompt) {
+				clearPrompt();
+				// let prompt = createPrompt(email); // 获取生成提示框中的提示内容
+				for(let i = 0; i < prompt.length; i++) {
+					let li = document.createElement("li");
+					li.innerHTML = prompt[i];
+					sugWrapper.appendChild(li);
+				}
+			}
+
+			function clearPrompt() {
+				let li = sugWrapper.childNodes;
+				console.log("li.length:" + li.length);
+				for(let i = 0; i < li.length; i++) {
+					console.log("li:" + li[0]);
+					sugWrapper.removeChild(li[0]);
+				}
+			}
+
+			/**
+			 * 控制提示框的显示隐藏状态
+			 */
+			function promptToogle() {
+				if(input.value == "") {
+					sugWrapper.style.display = "none";
+				} else {
+					sugWrapper.style.display = "block";
+				}
+			}
+		})();
+	</script>
+</body>
+</html>
