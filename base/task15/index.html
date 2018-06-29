@@ -75,32 +75,36 @@
 			}
 
 			input.onkeydown = function(e) {
-				if(e.keyCode == 38) {
-					if(nowSelectTipIndex === 0) {
-						nowSelectTipIndex = sugWrapper.childNodes.length - 1;
-					} else {
-						nowSelectTipIndex -= 1;
+				if((e.keyCode === 38 || e.keyCode === 40 || e.keyCode === 13) && sugWrapper.textContent) {
+					sugWrapper.childNodes[nowSelectTipIndex].removeAttribute("class");
+					if(e.keyCode == 38) {
+						if(nowSelectTipIndex === 0) {
+							nowSelectTipIndex = sugWrapper.childNodes.length - 1;
+						} else {
+							nowSelectTipIndex -= 1;
+						}
+						console.log(nowSelectTipIndex);
 					}
-					console.log(nowSelectTipIndex);
-				}
 
-				if(e.keyCode == 40) {
-					if(nowSelectTipIndex === sugWrapper.childNodes.length - 1) {
-						nowSelectTipIndex = 0;
-					} else {
-						nowSelectTipIndex += 1;
+					if(e.keyCode == 40) {
+						if(nowSelectTipIndex === sugWrapper.childNodes.length - 1) {
+							nowSelectTipIndex = 0;
+						} else {
+							nowSelectTipIndex += 1;
+						}
+						console.log(nowSelectTipIndex);
 					}
-					console.log(nowSelectTipIndex);
-				}
 
-				if(e.keyCode == 13) {
-					let value = sugWrapper.childNodes[nowSelectTipIndex].innerHTML;
-					input.value = htmlDecode(value);
-					sugWrapper.style.display = "none";
-				}
+					if(e.keyCode == 13) {
+						let value = sugWrapper.childNodes[nowSelectTipIndex].innerHTML;
+						input.value = value;
+						sugWrapper.style.display = "none";
+					}
+					sugWrapper.childNodes[nowSelectTipIndex].setAttribute("class", "active");
+				}	
 
 				if(e.keyCode == 27) {
-					input.select();
+					input.select();  // 对input框中的内容进行全选
 				}
 			}
 			
@@ -117,91 +121,63 @@
 			 * @param  {} e [获取点击对象]
 			 */
 			sugWrapper.onclick = function(e) {
-				console.log(e.target.nodeName);
+				// console.log(e.target);
 				var target = e.target;
 				if(target.nodeName === "LI") {
 					let value = target.innerHTML;
-					input.value = htmlDecode(value);
+					input.value = value;
 					input.focus();
 					sugWrapper.style.display = "none";
 				}
 			}
 
-			/**
-			 * 获取用户输入
-			 * @return {string} [将输入内容删除开头与结尾的空格并返回]
-			 */
+			// 获取用户输入
 			function getEmail() {
-				let email = input.value;
-				return email.trim();
+				return input.value.trim();
 			}
 
-			/**
-			 * 生成提示框中的提示内容
-			 * @param  {string} email [用户输入]
-			 * @return {Array}  将用户输入与每一个后缀结合，并返回结合后的内容
-			 */
-			function createPrompt(email) {
-				let prompt = [];
-
-				let prefix = email.indexOf("@") !== -1 ? email.slice(0, email.indexOf("@")) : email;
-				let postfix = email.indexOf("@") !== -1 ? email.slice(email.indexOf("@") + 1, email.length) : "";
-
-				// 这样截取时，在用记输入@前获取到的内容都是undefined
-				// if(email.indexOf("@") !== -1) { // 若用户输入含有@则截取@之前的字符串
-				// 	prefix = email.slice(0, email.indexOf("@"));
-				// 	postfix = email.slice(email.indexOf("@") + 1, email.length);  
-				// }
-				
-				for(let i = 0; i < postfixList.length; i++) {
-					if(postfixList[i].match(postfix)) {
-						prompt.push(prefix + '@' + postfixList[i]);
-					}
-				}
-				return prompt;
+			// 生成提示框内容
+			function createPrompt(prefix) {
+				let postfix = null;
+			    if (prefix.indexOf('@') + 1) {
+			        postfix = prefix.slice(prefix.indexOf('@') + 1);
+			        prefix = prefix.slice(0, prefix.indexOf('@'));
+			    }
+			    for (var i = 0, sug = []; i < postfixList.length; i++) {
+			        if (postfixList[i].indexOf(postfix) === 0) {
+			            sug.push(prefix + '@' + postfixList[i]);
+			        }
+			    }
+			    if (sug.length === 0) {
+			        for (var i = 0, sug = []; i < postfixList.length; i++) {
+			            sug.push(prefix + '@' + postfixList[i]);
+			        }
+			    }
+			    return sug;
 			}
 
-			/**
-			 * 将提示内容添加到提示框（emial-sug-wrapper）中
-			 */
+			// 将提示内容添加到提示框（emial-sug-wrapper）中
 			function addPrompt(prompt) {
 				// 添加前需清除之前的
-				while(sugWrapper.firstChild) {
-					sugWrapper.removeChild(sugWrapper.firstChild); // 删除所有子节点，被移除的节点依然存在于内存之中...
-				}
+				// while(sugWrapper.firstChild) {
+				// 	sugWrapper.removeChild(sugWrapper.firstChild); // 删除所有子节点，被移除的节点依然存在于内存之中...
+				// }
+				sugWrapper.textContent = "";
 				for(let i = 0; i < prompt.length; i++) {
 					let li = document.createElement("li");
-					li.innerHTML = htmlEncode(prompt[i]);
+					li.textContent = prompt[i];
 					sugWrapper.appendChild(li);
 				}
 				sugWrapper.childNodes[nowSelectTipIndex].setAttribute("class", "active");
 			}
 
-			/**
-			 * 控制提示框的显示隐藏状态
-			 */
+			 // 控制提示框的显示隐藏状态
 			function promptToogle() {
 				if(input.value == "") {
 					sugWrapper.style.display = "none";
 				} else {
 					sugWrapper.style.display = "block";
 				}
-			}
-
-			function htmlEncode(html) {
-				let temp = document.createElement("div");
-				temp.textContent != undefined ? temp.textContent = html : temp.innerText = html;
-				let output = temp.innerHTML;
-				temp = null;
-				return output;
-			}
-
-			function htmlDecode(text) {
-				let temp = document.createElement("div");
-				temp.innerHTML = text;
-				let output = temp.innerText || temp.textContent;
-				temp = null;
-				return output;
 			}
 		})();
 	</script>
