@@ -1,4 +1,4 @@
-
+const sourceData = require("./sourceData.js");
 function getData() {
 	let selected = document.querySelectorAll("input[checkbox-type='single']");
 	let selectedList = [];
@@ -16,3 +16,5 @@ function getData() {
 	}
 	return dataList;
 }
+
+module.exports = getData;

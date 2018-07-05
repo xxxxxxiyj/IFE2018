@@ -84,3 +84,5 @@ function mergeCell(start, col) {
 		}
 	}
 }
+
+module.exports = renderTable;

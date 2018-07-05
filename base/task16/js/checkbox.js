@@ -30,3 +30,5 @@ function chooseCheckBox(parent) {
         }
     }
 }
+
+module.exports = chooseCheckBox;
