@@ -3,8 +3,8 @@
  * @param  {} parent 容器
  */
 function chooseCheckBox(parent) {
-    let checkAll  = parent.querySelector("input[checkbox-type = 'all'");  // 获取当前容器下的全选框
-    let child = parent.querySelectorAll("input[checkbox-type = 'single'"); // 获取当前容器下的选项选框
+    let checkAll  = parent.querySelector("input[checkbox-type = 'all']");  // 获取当前容器下的全选框
+    let child = parent.querySelectorAll("input[checkbox-type = 'single']"); // 获取当前容器下的选项选框
     parent.onclick= function(e) {
         let target = e.target;
         if(target.getAttribute("type") === "checkbox") {
