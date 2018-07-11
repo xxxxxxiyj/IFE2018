@@ -1,0 +1,65 @@
+<?xml version="1.0" standalone="yes"?>
+
+<svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg">
+	<!-- 
+		cx,cy:圆距离左边与顶部的距离，若省略，则圆的中心为（0,0,）
+		stroke: 边框颜色
+		stroke-width:边框宽度
+	 -->
+	<circle cx="100" cy="50" r="40" stroke="#2d095c" stroke-width="2" fill="#f3d7ca"/>
+
+	<!-- 
+		x,y:矩形距离浏览器窗口左侧与顶端的距离
+		rx,ry:圆角
+	 -->
+	<rect width="300" height="100" x="300" y="50" rx="20" ry ="20"
+		style="fill:#e6a4b4;stroke-width:5;stroke:#c86b85;
+		fill-opacity:0.5;"/>
+
+	<!-- 
+		ellipse:椭圆
+		cx,cy:圆点的坐标
+		rx,ry:水平半径与垂直半径
+	 -->
+	<ellipse cx="100" cy="200" rx="80" ry="50" transform="rotate(60,60,200)"
+		style="fill:#ffeaa5;stroke:#fe5f55;stroke-width:5"/>
+
+	<!-- 
+		line:线条
+		x1,y1:起点位置
+		x2,y2:结束位置
+	 -->
+	<line x1="680" y1="50" x2="800" y2="150"
+		style="stroke:#144d53;stroke-width:5"/>
+
+	<!-- 
+		polygon:多边形
+		ponits:定义多边形每个角的x和y坐标
+	 -->
+	<polygon points="220,100 300 210, 123,234"
+		style="fill:#ccc;stroke:#000;stroke-width:3"/>
+	
+	<!-- 
+		polyline:仅包含直线的形状
+	 -->
+	<polyline points="800,50 800,80 830,80 830,110 860,110"
+		style="fill:white; stroke:pink;stroke-width:5"/>
+
+	<!-- 
+		path:定义路径
+		M = moveto
+		L = lineto
+		H = horizontal lineto
+		V = vertical lineto
+		C = curveto
+		S = smooth curveto
+		Q = quadratic Belzier curve
+		T = smooth quadratic Belzier curveto
+		A = elliptical Arc
+		Z = closepath
+		所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位[相对谁？]
+	 -->
+	<path d="M250 150 L150 350 L350 350 Z"/>
+
+	<text x="150" y="500" fill="green">SVGSVGSVGSVG</text>
+</svg>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas练习</title>
+</head>
+<body>
+	<canvas id="prac" width="600" height="300" style="border:1px solid #000"></canvas>
+	<canvas id="clock" width="600" height="300"></canvas>
+
+	<script>
+		var prac = document.querySelector("#prac");
+		var ctx = prac.getContext("2d");
+		ctx.moveTo(10, 30);
+		ctx.lineTo(100,80);
+		ctx.stroke();
+
+		ctx.strokeRect(85, 85, 100, 150); // 画矩形
+
+		ctx.font = "26px Arial";
+		ctx.fillText("Some Text", 230, 80);
+
+		var circle = prac.getContext("2d");
+		circle.beginPath(); // 清楚之前的路径
+		circle.arc(prac.width * 0.5, prac.height * 0.5, 25, 0, Math.PI * 2, true);
+		circle.closePath();
+		circle.stroke();
+
+		var clock = document.querySelector("#clock");
+	</script>
+</body>
+</html>
