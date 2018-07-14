@@ -24,3 +24,4 @@ productSelect.onchange = function() {
 }
 
 drawBar(sourceData);
+lineChart(sourceData);

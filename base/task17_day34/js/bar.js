@@ -7,8 +7,9 @@ function drawBar(data) {
 	const axisWidth = graphWidth - graphPadding; // x轴的宽度
 	const axisHeight = graphHeight - graphPadding * 1.5;  // y轴的高度
 	const barWidth = 4.5; // 一个柱子的宽度
-	const barGap = 10;   // 柱子的间隔宽度
-	const barColor = ["#ff7c7c","#9287e7","#32d3eb","#5bc49f","#d4ec59","#feb64d","#60acfc","#a252a9","#2390d2"];
+	const barGap = 12;   // 柱子的间隔宽度
+	// const barColor = ["#ff7c7c","#9287e7","#32d3eb","#5bc49f","#d4ec59","#feb64d","#60acfc","#a252a9","#2390d2"];
+	const barColor = ["#27a1ea", "#9cdc82", "#ff9f69", "#d660a8", "#6370de", "#32d3eb", "#d4ec59", "#feb64d", "#b55cbd"];
 	const axisColor = "#000";	
 	var dataMax = 0;
 
@@ -27,7 +28,7 @@ function drawBar(data) {
 	// console.log(dataMax);
 
 	// 	根据Max和你用来绘制柱状图图像区域的高度，进行一个数据和像素的折算比例
-	var rate = dataMax / axisHeight;
+	var rate = dataMax / (axisHeight - graphPadding);
 
 	// 	绘制横轴及纵轴
 	let barHtml = [];
