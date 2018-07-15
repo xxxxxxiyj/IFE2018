@@ -3,40 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Day34-Day36</title>
-	<style>
-		th,td {
-			width: 70px;
-			height: 30px;
-			text-align: center;
-			border: 1px solid #000;
-		}
-		table {
-			border-collapse: collapse;
-		}
-		#bar-graph,
-		#line-chart {
-			padding: 10px;
-		}
-	</style>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	
-	<div id="region-radio-wrapper">
-		<input type="checkbox" name="all-region" value="全选" checkbox-type="all">全选
-		<input type="checkbox" name="area" value="华东" checkbox-type="single">华东
-		<input type="checkbox" name="area" value="华南" checkbox-type="single">华南
-		<input type="checkbox" name="area" value="华北" checkbox-type="single">华北
+	<div class="container">
+		<form id="checkbox-wrapper">
+			<div id="region-radio-wrapper">
+				<input type="checkbox" name="all-region" value="全选" checkbox-type="all">全选
+				<input type="checkbox" name="area" value="华东" checkbox-type="single">华东
+				<input type="checkbox" name="area" value="华南" checkbox-type="single">华南
+				<input type="checkbox" name="area" value="华北" checkbox-type="single">华北
+			</div>
+			<div id="product-radio-wrapper">
+				<input type="checkbox" name="all-product" value="全选" checkbox-type="all">全选
+				<input type="checkbox" name="goods" value="手机" checkbox-type="single">手机
+				<input type="checkbox" name="goods" value="笔记本" checkbox-type="single">笔记本
+				<input type="checkbox" name="goods" value="智能音箱" checkbox-type="single">智能音箱
+			</div>
+		</form>
+		
+		<div class="chart-w">
+			<svg id="bar-graph" viewbox="0, 0, 700, 300"></svg>
+			<canvas id="line-chart" width="700" height="300"></canvas>
+		</div>
+		<table id="table-wrapper"></table>
 	</div>
-	<div id="product-radio-wrapper">
-		<input type="checkbox" name="all-product" value="全选" checkbox-type="all">全选
-		<input type="checkbox" name="goods" value="手机" checkbox-type="single">手机
-		<input type="checkbox" name="goods" value="笔记本" checkbox-type="single">笔记本
-		<input type="checkbox" name="goods" value="智能音箱" checkbox-type="single">智能音箱
-	</div>
-
-	<svg id="bar-graph" viewbox="0, 0, 700, 300"></svg>
-	<canvas id="line-chart" width="700" height="300"></canvas>
-	<table id="table-wrapper"></table>
 
 	<script src="js/sourceData.js"></script>
 	<script src="js/checkbox.js"></script>

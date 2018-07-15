@@ -1,7 +1,8 @@
 
-function renderTable(container, data, region, product) {
+function renderTable(container, data) {
 	container.textContent = "";
-
+	var region = document.getElementById("region-radio-wrapper");
+	var product = document.getElementById("product-radio-wrapper");
 	let regSel = region.querySelectorAll("input[checkbox-type='single']");
 	let proSel = product.querySelectorAll("input[checkbox-type='single']");
 	let regSelNum = 0;

@@ -1,0 +1,38 @@
+.container {
+	width: 1500px;
+	margin: 0 auto;
+}
+.chart-wrapper {
+	width: 100%;
+	text-align: center;
+}
+table {
+	width: 95%;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+th,td {
+	height: 30px;
+	text-align: center;
+	border: 1px solid #cbae25;
+}
+th {
+	background-color: #eac100;
+	color: #fff;
+}
+td {
+	color: #eac100;
+}
+tr:hover {
+	background-color: #f8f1d0;
+}
+td:hover {
+	background-color: #eac100;
+	color: #fff;
+}
+[rowspan] {
+	background-color: #fff;
+}
+#bar-graph,
+#line-chart {
+}
